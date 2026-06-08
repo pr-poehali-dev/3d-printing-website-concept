@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 
-const HERO_IMAGE = 'https://cdn.poehali.dev/projects/595e6dce-667e-489e-a22b-5fbde23e864d/files/eaa84945-b34e-4af6-b5dc-ad8ddcb2e138.jpg';
+const HERO_IMAGE = 'https://images.unsplash.com/photo-1611117775350-ac3950990985?w=1400&q=80';
+const ABOUT_IMAGE = 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=900&q=80';
 
 const NAV_ITEMS = [
   { id: 'home', label: 'Главная' },
   { id: 'services', label: 'Услуги' },
-  { id: 'materials', label: 'Материалы' },
   { id: 'portfolio', label: 'Портфолио' },
   { id: 'prices', label: 'Цены' },
 ];
@@ -17,13 +17,6 @@ const SERVICES = [
   { icon: 'Layers', title: 'Изготовление прототипов', desc: 'Создание опытных образцов изделий для тестирования и дальнейшего производства.', tag: 'Прототипирование' },
   { icon: 'Sparkles', title: 'Печать декоративных изделий', desc: 'Изготовление фигурок, сувениров, элементов декора и индивидуальных подарков.', tag: 'Декор' },
   { icon: 'Wrench', title: 'Постобработка', desc: 'Шлифовка, покраска, склейка деталей и подготовка изделия к использованию.', tag: 'Финишная обработка' },
-];
-
-const MATERIALS = [
-  { name: 'PLA', color: '#4ade80', desc: 'Экологичный пластик для декоративных изделий, макетов и сувениров.', strength: 3, flex: 1, temp: 2, colors: 'Более 20 цветов', props: ['Экологичный', 'Лёгкий', 'Без запаха'] },
-  { name: 'PETG', color: '#3b9eff', desc: 'Прочный материал с хорошей устойчивостью к влаге и механическим нагрузкам.', strength: 4, flex: 2, temp: 3, colors: '15+ цветов', props: ['Влагостойкий', 'Прочный', 'Прозрачный'] },
-  { name: 'ABS', color: '#f59e0b', desc: 'Ударопрочный пластик для технических деталей и корпусов.', strength: 5, flex: 2, temp: 5, colors: '10+ цветов', props: ['Ударопрочный', 'Термостойкий', 'Технический'] },
-  { name: 'TPU', color: '#a855f7', desc: 'Гибкий материал для амортизирующих элементов, чехлов и прокладок.', strength: 3, flex: 5, temp: 2, colors: '8+ цветов', props: ['Гибкий', 'Резинистый', 'Ударостойкий'] },
 ];
 
 const PORTFOLIO_ITEMS = [
@@ -40,7 +33,7 @@ const PORTFOLIO_ITEMS = [
 const PORTFOLIO_FILTERS = ['Все', 'Технические детали', 'Корпуса', 'Фигурки', 'Сувениры', 'Прототипы', 'Декор'];
 
 const PRICES = [
-  { label: 'Небольшие изделия', size: 'до 5 см', price: 'от 300 ₽', icon: 'Package' },
+  { label: 'Небольшие изделия', size: 'готово в день заказа', price: 'от 300 ₽', icon: 'Package' },
   { label: 'Детали среднего размера', size: '5–15 см', price: 'от 700 ₽', icon: 'Boxes' },
   { label: 'Корпуса и технические элементы', size: '15–25 см', price: 'от 1 000 ₽', icon: 'Server' },
   { label: 'Фигурки и декоративные изделия', size: 'любой размер', price: 'от 1 500 ₽', icon: 'Star' },
@@ -62,15 +55,6 @@ const FAQ = [
   { q: 'Есть ли доставка?', a: 'Да, отправляем по всей России через СДЭК и Почту России. Также возможен самовывоз.' },
 ];
 
-function StarRating({ value, max = 5, color }: { value: number; max?: number; color: string }) {
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: max }).map((_, i) => (
-        <div key={i} className="h-1.5 w-6 rounded-full" style={{ backgroundColor: i < value ? color : 'rgba(255,255,255,0.1)' }} />
-      ))}
-    </div>
-  );
-}
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState('home');
@@ -187,7 +171,7 @@ export default function Index() {
             </div>
 
             <div className="flex flex-wrap gap-10 mt-14 pt-8 border-t border-border/50 animate-fade-in-up delay-400">
-              {[{ value: '200+', label: 'Заказов выполнено' }, { value: '4', label: 'Материала для печати' }, { value: '1 день', label: 'Минимальный срок' }].map((s) => (
+              {[{ value: '100+', label: 'Заказов выполнено' }, { value: 'В день', label: 'Срок небольших изделий' }, { value: '1–7 дн', label: 'Срок любых заказов' }].map((s) => (
                 <div key={s.label}>
                   <div className="text-3xl font-black text-primary">{s.value}</div>
                   <div className="text-sm text-muted-foreground mt-0.5">{s.label}</div>
@@ -228,10 +212,10 @@ export default function Index() {
 
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden border border-border glow-blue-sm">
-                <img src={HERO_IMAGE} alt="3D принтер" className="w-full h-full object-cover" />
+                <img src={ABOUT_IMAGE} alt="3D принтер" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-4 -left-4 bg-card border border-border rounded-xl p-4 shadow-2xl">
-                <div className="text-2xl font-black text-primary">200+</div>
+                <div className="text-2xl font-black text-primary">100+</div>
                 <div className="text-xs text-muted-foreground mt-0.5">заказов выполнено</div>
               </div>
               <div className="absolute -top-4 -right-4 bg-primary rounded-xl p-4 shadow-2xl glow-blue">
@@ -274,48 +258,6 @@ export default function Index() {
                 Оставить заявку <Icon name="ArrowRight" size={16} />
               </button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MATERIALS */}
-      <section id="materials" className="py-24 bg-card/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16 section-reveal">
-            <span className="text-primary font-mono text-sm font-medium tracking-widest uppercase">Чем печатаю</span>
-            <h2 className="text-3xl sm:text-4xl font-black mt-3">Материалы для печати</h2>
-            <p className="text-muted-foreground mt-4 max-w-lg mx-auto">Подберу оптимальный материал под ваши задачи и бюджет</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 section-reveal">
-            {MATERIALS.map((mat) => (
-              <div key={mat.name} className="bg-card border border-border rounded-2xl p-6 card-hover">
-                <div className="w-14 h-14 rounded-2xl mb-5 flex items-center justify-center text-xl font-black text-background" style={{ backgroundColor: mat.color }}>
-                  {mat.name}
-                </div>
-                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{mat.desc}</p>
-
-                <div className="space-y-3 mb-5">
-                  {[{ label: 'Прочность', value: mat.strength }, { label: 'Гибкость', value: mat.flex }, { label: 'Термостойкость', value: mat.temp }].map((prop) => (
-                    <div key={prop.label}>
-                      <div className="flex justify-between text-xs text-muted-foreground mb-1">
-                        <span>{prop.label}</span><span>{prop.value}/5</span>
-                      </div>
-                      <StarRating value={prop.value} color={mat.color} />
-                    </div>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {mat.props.map((p) => (
-                    <span key={p} className="text-xs px-2 py-0.5 rounded-full border" style={{ borderColor: mat.color + '40', color: mat.color }}>
-                      {p}
-                    </span>
-                  ))}
-                </div>
-                <div className="text-xs text-muted-foreground font-mono">{mat.colors}</div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
