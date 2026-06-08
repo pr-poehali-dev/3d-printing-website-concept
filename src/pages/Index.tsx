@@ -50,7 +50,7 @@ const ADVANTAGES = [
 
 const FAQ = [
   { q: 'В каком формате нужно предоставить модель?', a: 'Принимаем STL, OBJ, STEP, 3MF и другие популярные форматы. Если файла нет — разработаем модель по вашему заданию.' },
-  { q: 'Сколько времени занимает изготовление?', a: 'Небольшие изделия — от 1 дня. Крупные или сложные проекты — 3–7 дней. Срочные заказы по договорённости.' },
+  { q: 'Сколько времени занимает изготовление?', a: 'Небольшие изделия — в день получения заказа. Крупные или сложные проекты — 3–7 дней. Срочные заказы по договорённости.' },
   { q: 'Как рассчитывается стоимость?', a: 'Цена зависит от объёма модели, материала, сложности и постобработки. Точный расчёт — после получения файла.' },
   { q: 'Есть ли доставка?', a: 'Да, отправляем по всей России через СДЭК и Почту России. Также возможен самовывоз.' },
 ];
@@ -247,15 +247,15 @@ export default function Index() {
               </div>
             ))}
 
-            <div className="sm:col-span-2 lg:col-span-1 bg-primary/5 border border-primary/20 rounded-2xl p-6 flex flex-col justify-between card-hover">
+            <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 flex flex-col sm:flex-row lg:flex-col justify-between card-hover col-span-1">
               <div>
-                <div className="text-4xl mb-3">🚀</div>
-                <h3 className="font-bold text-xl mb-2">Готовы к старту?</h3>
-                <p className="text-muted-foreground text-sm">Отправьте файл модели или опишите задачу — рассчитаю стоимость бесплатно</p>
+                <div className="text-3xl mb-2">🚀</div>
+                <h3 className="font-bold text-lg mb-1">Готовы к старту?</h3>
+                <p className="text-muted-foreground text-sm">Отправьте файл — рассчитаю бесплатно</p>
               </div>
               <button onClick={() => scrollTo('prices')}
-                className="mt-6 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-3 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-all">
-                Оставить заявку <Icon name="ArrowRight" size={16} />
+                className="mt-4 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-all shrink-0">
+                Заявка <Icon name="ArrowRight" size={15} />
               </button>
             </div>
           </div>
@@ -280,20 +280,20 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 section-reveal">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 section-reveal">
             {filtered.map((item, i) => (
-              <div key={i} className="group bg-card border border-border rounded-2xl overflow-hidden card-hover cursor-pointer">
-                <div className="aspect-square flex items-center justify-center relative" style={{ background: `linear-gradient(135deg, ${item.color}15, ${item.color}05)` }}>
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl" style={{ backgroundColor: item.color + '20', border: `1px solid ${item.color}30` }}>
+              <div key={i} className="group bg-card border border-border rounded-xl overflow-hidden card-hover cursor-pointer">
+                <div className="aspect-video flex items-center justify-center relative" style={{ background: `linear-gradient(135deg, ${item.color}15, ${item.color}05)` }}>
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-2xl" style={{ backgroundColor: item.color + '20', border: `1px solid ${item.color}30` }}>
                     {item.emoji}
                   </div>
                 </div>
-                <div className="p-4">
-                  <div className="text-xs font-mono mb-1" style={{ color: item.color }}>{item.category}</div>
-                  <div className="font-semibold text-sm mb-2">{item.title}</div>
+                <div className="p-3">
+                  <div className="text-xs font-mono mb-0.5 truncate" style={{ color: item.color }}>{item.category}</div>
+                  <div className="font-semibold text-xs mb-1.5 leading-snug">{item.title}</div>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1"><Icon name="Layers" size={11} />{item.material}</span>
-                    <span className="flex items-center gap-1"><Icon name="Clock" size={11} />{item.days} {item.days === 1 ? 'день' : 'дня'}</span>
+                    <span className="flex items-center gap-1"><Icon name="Layers" size={10} />{item.material}</span>
+                    <span className="flex items-center gap-1"><Icon name="Clock" size={10} />{item.days} {item.days === 1 ? 'день' : 'дня'}</span>
                   </div>
                 </div>
               </div>
@@ -398,13 +398,17 @@ export default function Index() {
               ))}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap justify-center">
               <a href="https://t.me/" className="w-9 h-9 rounded-lg bg-secondary border border-border flex items-center justify-center hover:bg-primary/10 hover:border-primary/30 transition-all">
                 <Icon name="Send" size={16} className="text-muted-foreground" />
               </a>
               <a href="tel:+7" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
                 <Icon name="Phone" size={14} />
                 +7 (___) ___-__-__
+              </a>
+              <a href="mailto:farafonoffdk@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Icon name="Mail" size={14} />
+                farafonoffdk@gmail.com
               </a>
             </div>
           </div>
